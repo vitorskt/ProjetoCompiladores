@@ -1,0 +1,9 @@
+1 - recebe cadeia de strings
+2 - aceita apenas o alfabeto latino minusculo ou maiusculo e algarismos numericos de 0 a 9
+3 - não aceita as letras j, w, k, y, ç, h, q e caracteres especiais como /, (, ), &, %, $, #, @, !.
+4 - espaço em branco é aceito a meu critério
+5 - as sequências de palavras válidas deverão sempre começar com consoantes válidas e sempre alternando consoantes com vogais.
+6 - strings terminadas em algarismos numericos também podem ser aceitas.
+7 - não deverão ser aceitas palavras compostas por dígrafos de consoantes e algarismos numéricos no meio da cadeia.
+8 - O tamanho máximo da palavra deve ser de até 10 tokens atômicos, incluindo espaços.
+9 - Indique ao usuario que palavras iniciadas com as consoantes z e x são sempre palavras reservadas pelo sistema.

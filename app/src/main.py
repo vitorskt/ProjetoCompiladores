@@ -1,6 +1,6 @@
 vogais = "aeiou"
 consoantes = "bcdfglmnprstvxz"
-caracteres_validos = "123456789 "
+caracteres_validos = "123456789"
 flag = False
 
 

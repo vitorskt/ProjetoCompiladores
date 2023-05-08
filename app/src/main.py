@@ -1,14 +1,11 @@
 vogais = "aeiou"
 consoantes = "bcdfglmnprstvxz"
 caracteres_validos = "123456789 "
+flag = False
 
 
-def is_valid_token(token, posicao):
-    """
-    Validates all tokens (letters that make up the word)
-    :param token: letter
-    :return: Boolean value (True if token is valid)
-    """
+def is_valid_token(token, posicao, tam):
+    global flag
 
     if posicao == 0 and token in "xz":
         print("Palavras iniciadas com as consoantes X ou Z são palavras reservadas pelo sistema.")
@@ -20,6 +17,19 @@ def is_valid_token(token, posicao):
     if token not in vogais and token not in consoantes and token not in caracteres_validos:
         return False
 
+    if tam - 1 != posicao and token in caracteres_validos.strip():
+        return False
+
+    if tam - 1 == posicao and token in caracteres_validos.strip():
+        return True
+
+    if token in consoantes and flag == False:
+        flag = True
+    elif token in vogais and flag == True:
+        flag = False
+    else:
+        return False
+
     return True
 
 
@@ -29,26 +39,15 @@ def lexer(cadeia):
     if len(cadeia) > 10:
         cadeia = cadeia[:10]
         print(f"NOVA CADEIA: {cadeia}")
+
+    tam = len(cadeia)
+
     for posicao, token in enumerate(cadeia):
-        if not is_valid_token(token, posicao): # == False
-            print(f"A cadeia é rejeitada. O token {token} não é válido.")
+        if not is_valid_token(token, posicao, tam):  # == False
+            print(f"A cadeia é rejeitada. A cadeia não obedece uma de nossas regras.")
             return 0
 
-        if len(cadeia) - 1 != posicao and token in caracteres_validos.strip():
-            print("Cadeia Inválida 1")
-            return 0
-
-        elif len(cadeia) - 1 == posicao and token in caracteres_validos.strip():
-            print("CADEIA ACEITA")
-            return 0
-
-        if not (cadeia[posicao] in consoantes and cadeia[posicao + 1] in vogais) and \
-            not (cadeia[posicao] in vogais and cadeia[posicao + 1] in consoantes):
-
-            if len(cadeia) - 1 == posicao + 1 and cadeia[posicao + 1] in caracteres_validos.strip():
-                print("CADEIA ACEITA")
-            else:
-                print("Cadeia Inválida 2")
-            return 0
     print("CADEIA ACEITA")
-lexer("paralazemi dematis lll")
+
+
+lexer("paralazeme dematis lll")

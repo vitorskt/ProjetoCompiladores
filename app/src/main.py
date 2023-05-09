@@ -1,3 +1,4 @@
+# Analisador Léxico
 vogais = "aeiou"
 consoantes = "bcdfglmnprstvxz"
 caracteres_validos = "123456789"
@@ -17,10 +18,10 @@ def is_valid_token(token, posicao, tam):
     if token not in vogais and token not in consoantes and token not in caracteres_validos:
         return False
 
-    if tam - 1 != posicao and token in caracteres_validos.strip():
+    if tam - 1 != posicao and token in caracteres_validos:
         return False
 
-    if tam - 1 == posicao and token in caracteres_validos.strip():
+    if tam - 1 == posicao and token in caracteres_validos:
         return True
 
     if token in consoantes and flag == False:
@@ -34,20 +35,19 @@ def is_valid_token(token, posicao, tam):
 
 
 def lexer(cadeia):
-    print(f"cadeia inicial: {cadeia}")
-    cadeia = cadeia.lower()
     if len(cadeia) > 10:
         cadeia = cadeia[:10]
-        print(f"NOVA CADEIA: {cadeia}")
 
+    print(f"CADEIA: {cadeia}")
     tam = len(cadeia)
+    cadeia = cadeia.lower()
 
     for posicao, token in enumerate(cadeia):
         if not is_valid_token(token, posicao, tam):  # == False
             print(f"A cadeia é rejeitada. A cadeia não obedece uma de nossas regras.")
             return 0
 
-    print("CADEIA ACEITA")
+    print(f"CADEIA {cadeia} ACEITA")
 
 
-lexer("paralazeme dematis lll")
+lexer(input("Digite a cadeia: "))
